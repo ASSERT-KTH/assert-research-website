@@ -1,0 +1,29 @@
+/* =========================================================================
+   main.css — Entry point. Imports the modular stylesheets in cascade order.
+   Load order matters: tokens → base → layout → components.
+   ========================================================================= */
+
+@import "theme.css";
+@import "base.css";
+@import "layout.css";
+@import "components.css";
+
+/* Utility helpers (kept minimal; prefer components above) */
+.u-center {
+  text-align: center;
+}
+.u-mt-6 {
+  margin-top: var(--space-6);
+}
+[hidden] {
+  display: none !important;
+}
+
+/* Hide elements that belong to the inactive language until JS resolves it,
+   preventing a flash of both languages. */
+[data-i18n-lang] {
+  display: none;
+}
+html.i18n-ready [data-i18n-lang="active"] {
+  display: revert;
+}

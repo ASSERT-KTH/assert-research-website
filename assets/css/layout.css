@@ -1,0 +1,185 @@
+/* =========================================================================
+   layout.css — Containers, header, footer, sections and grids
+   ========================================================================= */
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.container--narrow {
+  max-width: var(--container-narrow);
+}
+
+.section {
+  padding-block: var(--space-8);
+}
+
+.section--muted {
+  background: var(--bg-muted);
+  border-block: 1px solid var(--border);
+}
+
+.section__head {
+  max-width: var(--container-narrow);
+  margin-bottom: var(--space-6);
+}
+
+.section__eyebrow {
+  display: inline-block;
+  font-size: var(--fs-300);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+  margin-bottom: var(--space-2);
+}
+
+.section__lead {
+  margin-top: var(--space-3);
+  font-size: var(--fs-500);
+  color: var(--text-secondary);
+}
+
+/* ---- Header ------------------------------------------------------------ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: 72px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+}
+
+.brand img {
+  height: 34px;
+  width: auto;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.site-nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.site-nav__links a {
+  color: var(--text-secondary);
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-400);
+}
+
+.site-nav__links a:hover {
+  color: var(--color-blue-800);
+}
+
+/* ---- Footer ------------------------------------------------------------ */
+.site-footer {
+  background: var(--bg-brand-deep);
+  color: var(--text-on-brand);
+  padding-block: var(--space-8) var(--space-6);
+}
+
+.site-footer a {
+  color: #cfe2f5;
+}
+
+.site-footer a:hover {
+  color: var(--color-yellow-400);
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: var(--space-7);
+  align-items: start;
+}
+
+.site-footer__logo {
+  height: 30px;
+  width: auto;
+  margin-bottom: var(--space-4);
+}
+
+.site-footer__col h4 {
+  color: var(--color-white);
+  font-size: var(--fs-400);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-3);
+}
+
+.site-footer__col ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.site-footer__bottom {
+  margin-top: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  justify-content: space-between;
+  font-size: var(--fs-300);
+  color: #9db8d2;
+}
+
+/* ---- Grids ------------------------------------------------------------- */
+.grid {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.grid--cards {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.grid--board {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+@media (max-width: 720px) {
+  .site-footer__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  /* Collapse the in-page anchor nav on small screens — it's a single-page
+     site and the footer carries the same links. Keep the language switch. */
+  .site-nav__links {
+    display: none;
+  }
+  .site-header__inner {
+    min-height: 64px;
+  }
+  .brand img {
+    height: 30px;
+  }
+}

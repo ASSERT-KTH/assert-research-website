@@ -1,0 +1,159 @@
+/* =========================================================================
+   bylaws.css — Styling for the legal document pages (bylaws / stadgar).
+   Loaded in addition to main.css, only on the bylaws pages.
+   ========================================================================= */
+
+/* ---- Slim breadcrumb band --------------------------------------------- */
+.legal-hero {
+  background:
+    radial-gradient(
+      900px 400px at 90% -40%,
+      var(--color-blue-100),
+      transparent 60%
+    ),
+    var(--color-blue-050);
+  border-bottom: 1px solid var(--border);
+}
+.legal-hero__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-block: var(--space-5);
+}
+.legal-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-300);
+  color: var(--text-secondary);
+}
+.legal-breadcrumb a {
+  color: var(--text-secondary);
+  font-weight: var(--fw-medium);
+}
+.legal-breadcrumb a:hover {
+  color: var(--color-blue-800);
+}
+.legal-breadcrumb__sep {
+  color: var(--color-line);
+}
+.legal-breadcrumb [aria-current] {
+  color: var(--color-blue-900);
+  font-weight: var(--fw-semibold);
+}
+
+.legal-altlang {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-semibold);
+  color: var(--color-blue-700);
+  background: var(--color-white);
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+}
+.legal-altlang:hover {
+  color: var(--color-blue-900);
+  border-color: #c6d6e6;
+}
+.legal-altlang svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* ---- Document body ----------------------------------------------------- */
+.legal {
+  padding-block: var(--space-7) var(--space-8);
+}
+.legal > h1:first-child {
+  margin-bottom: var(--space-5);
+}
+.legal h1 {
+  font-size: clamp(2rem, 3vw + 1rem, var(--fs-800));
+}
+.legal h2 {
+  font-size: var(--fs-600);
+  margin-top: var(--space-7);
+  margin-bottom: var(--space-3);
+  padding-left: var(--space-4);
+  border-left: 4px solid var(--accent);
+  scroll-margin-top: 90px;
+}
+.legal h3 {
+  font-size: var(--fs-500);
+  color: var(--color-blue-800);
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-2);
+}
+.legal p {
+  color: var(--color-ink);
+  margin-bottom: var(--space-4);
+}
+.legal ul,
+.legal ol {
+  margin-bottom: var(--space-4);
+  padding-left: 1.4rem;
+  display: grid;
+  gap: var(--space-2);
+}
+.legal li {
+  color: var(--color-ink);
+  padding-left: 0.25rem;
+}
+.legal li::marker {
+  color: var(--accent-strong);
+}
+.legal strong {
+  color: var(--color-blue-900);
+}
+
+/* Faint section divider rendered from markdown "---" */
+.legal__rule {
+  border: 0;
+  height: 1px;
+  background: var(--border);
+  margin-block: var(--space-6);
+}
+/* The "---" that immediately precedes a § heading is redundant with the
+   heading's own top spacing, so soften consecutive rules. */
+.legal__rule + .legal__rule {
+  display: none;
+}
+
+/* Italic stand-alone notes (e.g. the translation disclaimer) */
+.legal__note {
+  background: var(--color-yellow-100);
+  border: 1px solid var(--color-yellow-500);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  color: var(--color-ink);
+  font-size: var(--fs-400);
+  margin-block: var(--space-5);
+}
+
+/* ---- Signature block (passed through from the source HTML) ------------- */
+.legal__signatures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  margin-top: var(--space-7);
+}
+.legal__signature {
+  flex: 1 1 220px;
+  min-width: 200px;
+  color: var(--text-secondary);
+  font-size: var(--fs-400);
+  line-height: var(--lh-snug);
+}
+.legal__sigline {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  border-top: 1px solid var(--color-ink);
+  margin-bottom: var(--space-3);
+}

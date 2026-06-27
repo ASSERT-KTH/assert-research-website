@@ -1,0 +1,371 @@
+/* =========================================================================
+   components.css — Reusable UI components
+   buttons, hero, cards, member tiles, language switch, pills, lists
+   ========================================================================= */
+
+/* ---- Skip link --------------------------------------------------------- */
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -3rem;
+  z-index: 100;
+  background: var(--color-blue-900);
+  color: #fff;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  transition: top var(--transition);
+}
+.skip-link:focus {
+  top: var(--space-3);
+  color: #fff;
+}
+
+/* ---- Buttons ----------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-400);
+  line-height: 1;
+  padding: 0.8rem 1.4rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform var(--transition), background var(--transition),
+    box-shadow var(--transition), color var(--transition);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--color-blue-900);
+  box-shadow: var(--shadow-sm);
+}
+.btn--primary:hover {
+  background: var(--color-yellow-400);
+  color: var(--color-blue-900);
+  box-shadow: var(--shadow-md);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.55);
+  color: #fff;
+}
+.btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.btn--outline {
+  background: transparent;
+  border-color: var(--color-blue-600);
+  color: var(--color-blue-700);
+}
+.btn--outline:hover {
+  background: var(--color-blue-050);
+  color: var(--color-blue-800);
+}
+
+/* ---- Language switch --------------------------------------------------- */
+.lang-switch {
+  display: inline-flex;
+  background: var(--color-blue-050);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 3px;
+  gap: 2px;
+}
+.lang-switch__btn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: var(--fs-300);
+  font-weight: var(--fw-semibold);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.lang-switch__btn[aria-pressed="true"] {
+  background: var(--color-blue-600);
+  color: #fff;
+}
+.lang-switch__btn:hover:not([aria-pressed="true"]) {
+  color: var(--color-blue-800);
+}
+
+/* ---- Hero -------------------------------------------------------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      1200px 600px at 85% -10%,
+      var(--color-blue-100),
+      transparent 60%
+    ),
+    linear-gradient(180deg, var(--color-blue-050), var(--color-surface));
+  border-bottom: 1px solid var(--border);
+}
+.hero::after {
+  /* Swedish-flag accent ribbon */
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--color-blue-600) 0 60%,
+    var(--accent) 60% 100%
+  );
+}
+.hero__inner {
+  padding-block: clamp(var(--space-8), 10vw, var(--space-9));
+  max-width: 760px;
+}
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-white);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-medium);
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-5);
+}
+.hero__badge .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.hero__lead {
+  margin-top: var(--space-5);
+  font-size: clamp(1.0625rem, 1vw + 1rem, var(--fs-600));
+  color: var(--text-secondary);
+  max-width: 38ch;
+}
+.hero__actions {
+  margin-top: var(--space-6);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* ---- Generic card ------------------------------------------------------ */
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition),
+    border-color var(--transition);
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: #c6d6e6;
+}
+.card__icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: var(--color-blue-100);
+  color: var(--color-blue-700);
+  margin-bottom: var(--space-4);
+}
+.card__icon svg {
+  width: 24px;
+  height: 24px;
+}
+.card h3 {
+  font-size: var(--fs-500);
+  margin-bottom: var(--space-2);
+}
+.card p {
+  color: var(--text-secondary);
+  font-size: var(--fs-400);
+}
+
+/* ---- Feature / purpose list ------------------------------------------- */
+.checklist {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--space-4);
+}
+.checklist li {
+  position: relative;
+  padding-left: 2.25rem;
+  color: var(--text-secondary);
+}
+.checklist li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-yellow-100);
+  border: 1px solid var(--color-yellow-500);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d9a400' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-size: 0.95rem;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ---- Board / member tiles --------------------------------------------- */
+.member {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+.member__avatar {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto var(--space-4);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-700);
+  color: var(--color-blue-800);
+  background: linear-gradient(
+    135deg,
+    var(--color-blue-100),
+    var(--color-yellow-100)
+  );
+  border: 1px solid var(--border);
+}
+
+.member__avatar--photo {
+  object-fit: cover;
+  background: var(--color-blue-050);
+  box-shadow: 0 0 0 3px var(--color-white), 0 0 0 4px var(--color-blue-100);
+}
+.member__role {
+  display: inline-block;
+  margin-bottom: var(--space-2);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+}
+.member__name {
+  font-size: var(--fs-500);
+  font-weight: var(--fw-semibold);
+  color: var(--color-blue-900);
+}
+
+/* ---- Founding members chips ------------------------------------------- */
+.member-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding: 0;
+  list-style: none;
+}
+.member-chips li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 0.5rem 1rem 0.5rem 0.55rem;
+  font-weight: var(--fw-medium);
+  box-shadow: var(--shadow-sm);
+}
+.member-chips .chip__mono {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: var(--fs-300);
+  font-weight: var(--fw-bold);
+  color: var(--color-blue-800);
+  background: var(--color-yellow-100);
+  border: 1px solid var(--color-yellow-500);
+}
+
+/* ---- Contact ----------------------------------------------------------- */
+.contact-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  background: linear-gradient(
+    120deg,
+    var(--color-blue-700),
+    var(--color-blue-900)
+  );
+  color: #eaf2fb;
+  border-radius: var(--radius-lg);
+  padding: var(--space-7);
+  box-shadow: var(--shadow-lg);
+}
+.contact-card h2 {
+  color: #fff;
+}
+.contact-card p {
+  color: #cfe2f5;
+  margin-top: var(--space-2);
+}
+.contact-card__mail {
+  font-size: var(--fs-500);
+  font-weight: var(--fw-semibold);
+  color: var(--color-yellow-400);
+}
+.contact-card__mail:hover {
+  color: #fff;
+}
+
+/* ---- Meta strip (seat / financial year) -------------------------------- */
+.meta-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+}
+.meta-strip dt {
+  font-size: var(--fs-300);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+  margin-bottom: var(--space-1);
+}
+.meta-strip dd {
+  margin: 0;
+  font-size: var(--fs-500);
+  font-weight: var(--fw-medium);
+  color: var(--color-blue-900);
+}
+
+@media (max-width: 600px) {
+  .contact-card {
+    padding: var(--space-5);
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "assert-research-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static website for ASSERT Research, a non-profit association based in Stockholm, Sweden.",
+  "license": "CC-BY-4.0",
+  "scripts": {
+    "build": "node scripts/render-bylaws.js && node scripts/build-se.js",
+    "serve": "npm run build && npx --yes serve -l 5173 ."
+  }
+}
