@@ -46,7 +46,7 @@
      which works whether the site is at the domain root or a sub-path. */
   function urlForLang(lang) {
     const explicit = document.documentElement.getAttribute(
-      lang === "sv" ? "data-url-sv" : "data-url-en"
+      lang === "sv" ? "data-url-sv" : "data-url-en",
     );
     if (explicit) return explicit;
 

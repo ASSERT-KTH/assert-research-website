@@ -17,27 +17,29 @@
       name: "Martin Monperrus",
       roleKey: "board.chair",
       initials: "MM",
-      photo: "/assets/img/board/martin.jpg"
+      photo: "/assets/img/board/martin.jpg",
     },
     {
       name: "Deepika Tiwari",
       roleKey: "board.treasurer",
       initials: "DT",
-      photo: "/assets/img/board/deepika.jpg"
+      photo: "/assets/img/board/deepika.jpg",
     },
     {
       name: "Long Zhang",
       roleKey: "board.secretary",
       initials: "LZ",
-      photo: "/assets/img/board/long.jpg"
-    }
+      photo: "/assets/img/board/long.jpg",
+    },
   ];
 
   const FOUNDERS = [
+    "Aman Sharma",
     "Benoit Baudry",
     "Deepika Tiwari",
     "Frank Reyes García",
     "He Ye",
+    "Javier Ron Arteaga",
     "Jian Gu",
     "Khashayar Etemadi",
     "Long Zhang",
@@ -45,15 +47,15 @@
     "Sen Fang",
     "Sofia Bobadilla Ponce",
     "Yannik Sander",
-    "Zheyuan He",
     "Yi Liu",
-    "Javier Ron Arteaga"
+    "Zheyuan He",
   ];
 
   /* ---- Translation strings --------------------------------------------- */
   const STRINGS = {
     en: {
-      "meta.title": "ASSERT Research — Advancing software research",
+      "meta.title":
+        "ASSERT Research — Advancing software research for the public benefit",
       "meta.description":
         "ASSERT Research is a non-profit association based in Stockholm, Sweden, that conducts and promotes scientific research in software technology.",
 
@@ -151,7 +153,7 @@
 
       "bylaws.meta.title": "Bylaws — ASSERT Research",
       "bylaws.meta.desc":
-        "The bylaws (stadgar) of ASSERT Research, a non-profit association based in Stockholm, Sweden."
+        "The bylaws (stadgar) of ASSERT Research, a non-profit association based in Stockholm, Sweden.",
     },
 
     sv: {
@@ -223,8 +225,7 @@
 
       "board.eyebrow": "Styrning",
       "board.title": "Styrelseledamöter",
-      "board.lead":
-        "Styrelsen ansvarar för föreningens löpande verksamhet.",
+      "board.lead": "Styrelsen ansvarar för föreningens löpande verksamhet.",
       "board.chair": "Ordförande",
       "board.treasurer": "Kassör",
       "board.secretary": "Sekreterare",
@@ -248,13 +249,12 @@
       "footer.bylaws.sv": "Stadgar (svenska)",
       "footer.contact": "Kontakt",
       "footer.rights": "ASSERT Research. Alla rättigheter förbehållna.",
-      "footer.note":
-        "En ideell förening registrerad i Stockholm, Sverige.",
+      "footer.note": "En ideell förening registrerad i Stockholm, Sverige.",
 
       "bylaws.meta.title": "Stadgar — ASSERT Research",
       "bylaws.meta.desc":
-        "Stadgar för ASSERT Research, en ideell förening med säte i Stockholm, Sverige."
-    }
+        "Stadgar för ASSERT Research, en ideell förening med säte i Stockholm, Sverige.",
+    },
   };
 
   const SUPPORTED = ["en", "sv"];
@@ -296,25 +296,32 @@
   function renderFounders() {
     const host = document.querySelector("[data-founders-list]");
     if (!host) return;
-    host.innerHTML = FOUNDERS.map(function (name) {
-      const initials = name
-        .split(" ")
-        .map(function (w) {
-          return w[0];
-        })
-        .slice(0, 2)
-        .join("");
+    function cell(name) {
       return (
-        "<li>" +
-        '<span class="chip__mono" aria-hidden="true">' +
-        initials +
-        "</span>" +
-        "<span>" +
+        '<td class="member-table__cell">' +
+        '<span class="member-table__name">' +
         name +
         "</span>" +
-        "</li>"
+        "</td>"
       );
-    }).join("");
+    }
+
+    // Lay the names out across three columns, ordered by first name.
+    const ordered = FOUNDERS.slice().sort(function (a, b) {
+      return a.localeCompare(b);
+    });
+    const cols = 3;
+    const rows = Math.ceil(ordered.length / cols);
+    let html = "";
+    for (let r = 0; r < rows; r++) {
+      html += "<tr>";
+      for (let c = 0; c < cols; c++) {
+        const name = ordered[r * cols + c];
+        html += name ? cell(name) : '<td class="member-table__cell"></td>';
+      }
+      html += "</tr>";
+    }
+    host.innerHTML = html;
   }
 
   /* ---- Apply translations to the DOM ----------------------------------- */
@@ -345,12 +352,15 @@
     // (e.g. the bylaws pages) so the shared header/footer don't force the
     // home-page title.
     const root = document.documentElement;
-    document.title = t(lang, root.getAttribute("data-title-key") || "meta.title");
+    document.title = t(
+      lang,
+      root.getAttribute("data-title-key") || "meta.title",
+    );
     const desc = document.querySelector('meta[name="description"]');
     if (desc) {
       desc.setAttribute(
         "content",
-        t(lang, root.getAttribute("data-desc-key") || "meta.description")
+        t(lang, root.getAttribute("data-desc-key") || "meta.description"),
       );
     }
 
@@ -362,7 +372,7 @@
     document.querySelectorAll("[data-lang-btn]").forEach(function (btn) {
       btn.setAttribute(
         "aria-pressed",
-        btn.getAttribute("data-lang-btn") === lang ? "true" : "false"
+        btn.getAttribute("data-lang-btn") === lang ? "true" : "false",
       );
     });
   }
@@ -371,6 +381,6 @@
     SUPPORTED: SUPPORTED,
     DEFAULT_LANG: DEFAULT_LANG,
     apply: apply,
-    t: t
+    t: t,
   };
 })(window);

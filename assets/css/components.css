@@ -278,35 +278,29 @@
 }
 
 /* ---- Founding members chips ------------------------------------------- */
-.member-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-  padding: 0;
-  list-style: none;
-}
-.member-chips li {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
+.member-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
   background: var(--bg-elevated);
   border: 1px solid var(--border);
-  border-radius: var(--radius-pill);
-  padding: 0.5rem 1rem 0.5rem 0.55rem;
-  font-weight: var(--fw-medium);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
   box-shadow: var(--shadow-sm);
 }
-.member-chips .chip__mono {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-size: var(--fs-300);
-  font-weight: var(--fw-bold);
-  color: var(--color-blue-800);
-  background: var(--color-yellow-100);
-  border: 1px solid var(--color-yellow-500);
+.member-table__cell {
+  display: table-cell;
+  vertical-align: middle;
+  width: 33.333%;
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid var(--border);
+  font-weight: var(--fw-medium);
+}
+.member-table tr:first-child .member-table__cell {
+  border-top: 0;
+}
+.member-table__cell + .member-table__cell {
+  border-left: 1px solid var(--border);
 }
 
 /* ---- Contact ----------------------------------------------------------- */
@@ -367,5 +361,26 @@
 @media (max-width: 600px) {
   .contact-card {
     padding: var(--space-5);
+  }
+  /* Stack the founders table into a single column on small screens. */
+  .member-table,
+  .member-table tbody,
+  .member-table tr {
+    display: block;
+  }
+  .member-table__cell,
+  .member-table__cell + .member-table__cell {
+    display: block;
+    width: auto;
+    border-left: 0;
+  }
+  .member-table tr:first-child .member-table__cell {
+    border-top: 1px solid var(--border);
+  }
+  .member-table tr:first-child .member-table__cell:first-child {
+    border-top: 0;
+  }
+  .member-table__cell:empty {
+    display: none;
   }
 }
