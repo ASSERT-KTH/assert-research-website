@@ -95,6 +95,8 @@
       "about.meta.seat.value": "Stockholm, Sweden",
       "about.meta.type.label": "Legal form",
       "about.meta.type.value": "Ideell förening (non-profit)",
+      "about.meta.founded.label": "Founded",
+      "about.meta.founded.value": "22 May 2026",
       "about.meta.year.label": "Financial year",
       "about.meta.year.value": "1 Jan – 31 Dec",
 
@@ -197,6 +199,8 @@
       "about.meta.seat.value": "Stockholm, Sverige",
       "about.meta.type.label": "Juridisk form",
       "about.meta.type.value": "Ideell förening",
+      "about.meta.founded.label": "Grundad",
+      "about.meta.founded.value": "22 maj 2026",
       "about.meta.year.label": "Verksamhetsår",
       "about.meta.year.value": "1 jan – 31 dec",
 
