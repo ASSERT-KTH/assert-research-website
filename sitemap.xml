@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://assert-research.org/</loc>
-    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="en" href="https://assert-research.org/" />
-    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="sv" href="https://assert-research.org/se/" />
-  </url>
-  <url>
-    <loc>https://assert-research.org/se/</loc>
-    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="en" href="https://assert-research.org/" />
-    <xhtml:link xmlns:xhtml="http://www.w3.org/1999/xhtml" rel="alternate" hreflang="sv" href="https://assert-research.org/se/" />
   </url>
   <url>
     <loc>https://assert-research.org/bylaws-en.html</loc>

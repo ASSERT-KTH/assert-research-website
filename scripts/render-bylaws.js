@@ -38,13 +38,6 @@ function extractPartial(html, name) {
   return html.slice(from, to).trim();
 }
 
-/* Flip the language-switch pressed state for a given language. */
-function setPressed(headerHtml, lang) {
-  return headerHtml
-    .replace(/(data-lang-btn="en"\s+aria-pressed=")(?:true|false)(")/, "$1" + (lang === "en" ? "true" : "false") + "$2")
-    .replace(/(data-lang-btn="sv"\s+aria-pressed=")(?:true|false)(")/, "$1" + (lang === "sv" ? "true" : "false") + "$2");
-}
-
 /* ---- Minimal Markdown → HTML ------------------------------------------- */
 function escapeHtml(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -176,20 +169,12 @@ const globe =
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>';
 
 function page(cfg, headerPartial, footerPartial) {
-  const header = setPressed(headerPartial, cfg.lang);
+  const header = headerPartial;
   const body = markdownToHtml(fs.readFileSync(path.join(root, cfg.md), "utf8"));
 
   return `<!doctype html>
 <!-- GENERATED FILE — do not edit. Source: ${cfg.md} + index.html via scripts/render-bylaws.js -->
-<html
-  lang="${cfg.lang}"
-  data-page-lang="${cfg.lang}"
-  data-i18n-static
-  data-url-en="/bylaws-en.html"
-  data-url-sv="/bylaws-sv.html"
-  data-title-key="bylaws.meta.title"
-  data-desc-key="bylaws.meta.desc"
->
+<html lang="${cfg.lang}">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -246,7 +231,6 @@ function page(cfg, headerPartial, footerPartial) {
 
     ${footerPartial}
 
-    <script src="/assets/js/i18n.js"></script>
     <script src="/assets/js/main.js"></script>
   </body>
 </html>

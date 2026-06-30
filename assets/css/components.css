@@ -71,36 +71,6 @@
   color: var(--color-blue-800);
 }
 
-/* ---- Language switch --------------------------------------------------- */
-.lang-switch {
-  display: inline-flex;
-  background: var(--color-blue-050);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-pill);
-  padding: 3px;
-  gap: 2px;
-}
-.lang-switch__btn {
-  appearance: none;
-  border: none;
-  background: transparent;
-  color: var(--text-secondary);
-  font: inherit;
-  font-size: var(--fs-300);
-  font-weight: var(--fw-semibold);
-  padding: 0.35rem 0.75rem;
-  border-radius: var(--radius-pill);
-  cursor: pointer;
-  transition: background var(--transition), color var(--transition);
-}
-.lang-switch__btn[aria-pressed="true"] {
-  background: var(--color-blue-600);
-  color: #fff;
-}
-.lang-switch__btn:hover:not([aria-pressed="true"]) {
-  color: var(--color-blue-800);
-}
-
 /* ---- Hero -------------------------------------------------------------- */
 .hero {
   position: relative;

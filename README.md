@@ -4,15 +4,15 @@ The official website for **ASSERT Research**, a non-profit association
 (_ideell förening_) based in Stockholm, Sweden, advancing scientific research
 and development in software technology.
 
-A static site, bilingual (English + Swedish), deployed to **GitHub Pages** on
-the custom domain **[assert-research.org](https://assert-research.org)**.
+A static site, deployed to **GitHub Pages** on the custom domain
+**[assert-research.org](https://assert-research.org)**. The main site is in
+English; only the bylaws are published in both English and Swedish.
 
 ## Project structure
 
 ```
 .
-├── index.html              # English page (default) — single structural source
-├── se/index.html           # Swedish page — GENERATED from index.html
+├── index.html              # the site — English, edited directly
 ├── bylaws-en.html          # English bylaws — GENERATED from bylaws-en.md
 ├── bylaws-sv.html          # Swedish bylaws — GENERATED from bylaws-sv.md
 ├── assets/
@@ -21,14 +21,12 @@ the custom domain **[assert-research.org](https://assert-research.org)**.
 │   │   ├── theme.css        # design tokens: colours, type, spacing (edit here)
 │   │   ├── base.css         # reset + base element styles
 │   │   ├── layout.css       # header, footer, containers, grids
-│   │   └── components.css   # buttons, hero, cards, members, language switch
+│   │   ├── components.css   # buttons, hero, cards, members
+│   │   └── bylaws.css       # styling for the legal document pages
 │   ├── js/
-│   │   ├── i18n.js          # ALL copy + board/founder data + render engine
-│   │   └── main.js          # language resolution, switching, small UI
-│   ├── img/                 # optimised logos, favicon, board avatars
-│   └── css/bylaws.css       # styling for the legal document pages
+│   │   └── main.js          # small UI helpers (footer year)
+│   └── img/                 # optimised logos, favicon, board avatars
 ├── scripts/
-│   ├── build-se.js          # regenerates se/index.html from index.html
 │   └── render-bylaws.js     # renders bylaws-*.md → bylaws-*.html
 ├── bylaws-en.md / bylaws-sv.md   # authoritative bylaws source (Markdown)
 ├── CNAME                    # custom domain for GitHub Pages
@@ -37,33 +35,14 @@ the custom domain **[assert-research.org](https://assert-research.org)**.
 
 ## Editing content
 
-- **All visible text** lives in [`assets/js/i18n.js`](assets/js/i18n.js) under
-  the `STRINGS.en` and `STRINGS.sv` dictionaries. The HTML only carries
-  `data-i18n="key"` markers — never prose. Edit a string once and both the
-  English and Swedish pages update.
-- **Board members** and **founding members** are the `BOARD` and `FOUNDERS`
-  arrays at the top of `i18n.js`. Role labels (Chairperson, etc.) are
-  translated via the `board.*` keys.
+- **All visible text** lives directly in
+  [`index.html`](index.html), including the board and founding members.
 - **Colours / fonts / spacing** are design tokens in
   [`assets/css/theme.css`](assets/css/theme.css). The palette is built around
   the Swedish flag's blue and yellow.
 
-## Languages
-
-- English is the default and is served at `/`.
-- Swedish is served at `/se/`.
-- A header toggle switches language in place (no reload), updates the URL, and
-  remembers the choice. Language is resolved from, in order: the URL path
-  (`/se`), the page's declared language, a stored preference, then English.
-
-After editing `index.html`, regenerate the generated pages:
-
-```bash
-npm run build        # renders bylaws-*.html and se/index.html
-```
-
-> `se/index.html`, `bylaws-en.html`, and `bylaws-sv.html` are generated — do
-> not edit them by hand.
+> `bylaws-en.html` and `bylaws-sv.html` are generated — do not edit them by
+> hand (see below).
 
 ## Bylaws pages
 
@@ -73,24 +52,30 @@ rendered into styled, standalone pages (`bylaws-en.html`, `bylaws-sv.html`) by
 which are extracted from `index.html` between the `@partial:header` /
 `@partial:footer` comment markers — so the shared chrome has a single source.
 
+The shared header and footer are in English on both bylaws pages; only the
+legal body text differs by language. A link in the page header switches between
+`bylaws-en.html` and `bylaws-sv.html`.
+
 - Edit the **text** in the `.md` files, then run `npm run build`.
 - Edit the **document styling** in `assets/css/bylaws.css`.
-- The pages are language-static: the header EN/SV toggle navigates between
-  `bylaws-en.html` and `bylaws-sv.html` rather than swapping text in place.
+
+```bash
+npm run build        # renders bylaws-*.html
+```
 
 ## Local preview
 
 Because pages use absolute paths (`/assets/...`), serve from the project root:
 
 ```bash
-npm run serve        # builds the SV page + serves at http://localhost:5173
+npm run serve        # builds the bylaws pages + serves at http://localhost:5173
 # or any static server, e.g.:  python3 -m http.server 5173
 ```
 
 ## Deployment
 
 Pushing to `main` triggers `.github/workflows/deploy.yml`, which runs the build
-(regenerating `se/index.html`) and publishes the site to GitHub Pages.
+(rendering the bylaws pages) and publishes the site to GitHub Pages.
 
 One-time setup:
 

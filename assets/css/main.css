@@ -18,12 +18,3 @@
 [hidden] {
   display: none !important;
 }
-
-/* Hide elements that belong to the inactive language until JS resolves it,
-   preventing a flash of both languages. */
-[data-i18n-lang] {
-  display: none;
-}
-html.i18n-ready [data-i18n-lang="active"] {
-  display: revert;
-}

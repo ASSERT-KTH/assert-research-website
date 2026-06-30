@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: 20
 
-      - name: Build (generate Swedish page)
+      - name: Build (render bylaws pages)
         run: npm run build
 
       - name: Upload artifact
