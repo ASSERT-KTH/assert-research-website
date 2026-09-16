@@ -305,6 +305,11 @@
 .contact-card__mail:hover {
   color: #fff;
 }
+.contact-card__address {
+  margin-top: var(--space-3);
+  color: #cfe2f5;
+  font-style: normal;
+}
 
 /* ---- Meta strip (seat / financial year) -------------------------------- */
 .meta-strip {
