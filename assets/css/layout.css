@@ -87,6 +87,8 @@
 }
 
 .site-nav__links a {
+  position: relative;
+  isolation: isolate;
   color: var(--text-secondary);
   font-weight: var(--fw-medium);
   font-size: var(--fs-400);
@@ -94,6 +96,25 @@
 
 .site-nav__links a:hover {
   color: var(--color-blue-800);
+}
+
+.site-nav__links a[aria-current="page"] {
+  color: var(--color-blue-900);
+  font-weight: var(--fw-semibold);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-strong);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.35rem;
+}
+
+.site-nav__links a[aria-current="page"]::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -0.4rem -0.65rem;
+  background: var(--color-blue-050);
+  border: 1px solid var(--color-blue-100);
+  border-radius: var(--radius-pill);
 }
 
 /* ---- Footer ------------------------------------------------------------ */
@@ -171,13 +192,25 @@
     gap: var(--space-6);
   }
 
-  /* Collapse the in-page anchor nav on small screens — it's a single-page
-     site and the footer carries the same links. Keep the language switch. */
-  .site-nav__links {
-    display: none;
-  }
   .site-header__inner {
-    min-height: 64px;
+    flex-wrap: wrap;
+    padding-block: var(--space-3);
+  }
+  .site-nav {
+    width: 100%;
+    padding-bottom: var(--space-1);
+  }
+  .site-nav__links {
+    width: 100%;
+    justify-content: space-between;
+    gap: var(--space-2);
+    white-space: nowrap;
+  }
+  .site-nav__links a {
+    font-size: var(--fs-300);
+  }
+  .site-nav__links a[aria-current="page"]::before {
+    inset-inline: -0.25rem;
   }
   .brand img {
     height: 30px;
