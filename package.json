@@ -5,7 +5,7 @@
   "description": "Static website for ASSERT Research, a non-profit association based in Stockholm, Sweden.",
   "license": "CC-BY-4.0",
   "scripts": {
-    "build": "node scripts/render-bylaws.js",
+    "build": "node scripts/render-pages.js && node scripts/render-bylaws.js",
     "serve": "npm run build && npx --yes serve -l 5173 ."
   }
 }
