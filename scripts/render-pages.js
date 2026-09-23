@@ -29,7 +29,7 @@ const organizationJsonLd = `
         "name": "ASSERT Research",
         "legalName": "ASSERT Research",
         "url": "https://assert-research.org/",
-        "email": "hi@assert-research.org",
+        "email": "long@assert-research.org",
         "taxID": "802557-3893",
         "address": {
           "@type": "PostalAddress",
@@ -196,7 +196,7 @@ const pages = [
           <div class="contact-detail-card">
             <span class="section__eyebrow">Email</span>
             <h2>Write to us</h2>
-            <p><a class="contact-link" href="mailto:hi@assert-research.org">hi@assert-research.org</a></p>
+            <p><a class="contact-link" href="mailto:long@assert-research.org">long@assert-research.org</a></p>
             <p>We use this address for general enquiries, membership, and collaboration.</p>
           </div>
           <div class="contact-detail-card">
