@@ -12,11 +12,7 @@ English; only the bylaws are published in both English and Swedish.
 
 ```
 .
-├── index.html              # homepage + shared header/footer source
-├── about.html             # generated organization information page
-├── activities.html        # generated activities page
-├── governance.html        # generated board and governance page
-├── contact.html           # generated contact and address page
+├── index.html              # the site — English, edited directly
 ├── bylaws-en.html          # English bylaws — GENERATED from bylaws-en.md
 ├── bylaws-sv.html          # Swedish bylaws — GENERATED from bylaws-sv.md
 ├── assets/
@@ -31,8 +27,7 @@ English; only the bylaws are published in both English and Swedish.
 │   │   └── main.js          # small UI helpers (footer year)
 │   └── img/                 # optimised logos, favicon, board avatars
 ├── scripts/
-│   ├── render-pages.js       # renders standalone information pages
-│   └── render-bylaws.js      # renders bylaws-*.md → bylaws-*.html
+│   └── render-bylaws.js     # renders bylaws-*.md → bylaws-*.html
 ├── bylaws-en.md / bylaws-sv.md   # authoritative bylaws source (Markdown)
 ├── CNAME                    # custom domain for GitHub Pages
 └── .github/workflows/deploy.yml
@@ -40,8 +35,8 @@ English; only the bylaws are published in both English and Swedish.
 
 ## Editing content
 
-- Homepage text and the shared header/footer live in [`index.html`](index.html).
-- Standalone page content lives in [`scripts/render-pages.js`](scripts/render-pages.js).
+- **All visible text** lives directly in
+  [`index.html`](index.html), including the board and founding members.
 - **Colours / fonts / spacing** are design tokens in
   [`assets/css/theme.css`](assets/css/theme.css). The palette is built around
   the Swedish flag's blue and yellow.
